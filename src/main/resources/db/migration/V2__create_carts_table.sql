@@ -1,0 +1,5 @@
+CREATE TABLE store_api.carts (
+    id BINARY(16) DEFAULT (UUID_TO_BIN(UUID())) NOT NULL,
+    date_created DATE DEFAULT (CURDATE()) NOT NULL,
+    CONSTRAINT Cart_PK PRIMARY KEY (id)
+);
