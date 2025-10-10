@@ -18,9 +18,9 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class CartService {
-    private CartRepository cartRepository;
-    private CartMapper cartMapper;
-    private ProductRepository productRepository;
+    private final CartRepository cartRepository;
+    private final CartMapper cartMapper;
+    private final ProductRepository productRepository;
 
     public CartDto createCart() {
         Cart cart = new Cart();
