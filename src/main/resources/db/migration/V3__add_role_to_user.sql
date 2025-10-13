@@ -1,0 +1,2 @@
+ALTER TABLE store_api.users
+    ADD role VARCHAR(20) DEFAULT 'USER' NOT NULL;
