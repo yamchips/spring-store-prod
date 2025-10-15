@@ -7,6 +7,7 @@ import com.codewithmosh.store.dtos.UserDto;
 import com.codewithmosh.store.entities.User;
 import com.codewithmosh.store.mappers.UserMapper;
 import com.codewithmosh.store.repositories.UserRepository;
+import com.codewithmosh.store.services.AuthService;
 import com.codewithmosh.store.services.Jwt;
 import com.codewithmosh.store.services.JwtService;
 import jakarta.servlet.http.Cookie;
@@ -31,6 +32,7 @@ public class AuthController {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final JwtConfig jwtConfig;
+    private final AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(
@@ -71,10 +73,7 @@ public class AuthController {
 
     @GetMapping("/me")
     public ResponseEntity<UserDto> getUser() {
-        var authentication = SecurityContextHolder.getContext().getAuthentication();
-        var userId = (Long) authentication.getPrincipal();
-
-        User user = userRepository.findById(userId).orElse(null);
+        User user = authService.getCurrentUser();
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
