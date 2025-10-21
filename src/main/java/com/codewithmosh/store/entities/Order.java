@@ -34,7 +34,7 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private User customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<OrderItem> items = new LinkedHashSet<>();
 
     public static Order fromCart(Cart cart, User customer) {
