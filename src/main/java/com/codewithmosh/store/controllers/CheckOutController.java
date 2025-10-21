@@ -5,6 +5,7 @@ import com.codewithmosh.store.dtos.CheckOutResponse;
 import com.codewithmosh.store.dtos.ErrorDto;
 import com.codewithmosh.store.exceptions.CartEmptyException;
 import com.codewithmosh.store.exceptions.CartNotFoundException;
+import com.codewithmosh.store.exceptions.PaymentException;
 import com.codewithmosh.store.services.CheckoutService;
 import com.stripe.exception.StripeException;
 import jakarta.validation.Valid;
@@ -24,12 +25,13 @@ public class CheckOutController {
     public ResponseEntity<?> checkout(
             @Valid @RequestBody CheckOutRequest request
             ) {
-        try {
-            return ResponseEntity.ok(checkoutService.checkout(request));
-        } catch (StripeException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorDto("Error creating a checkout session"));
-        }
+        return ResponseEntity.ok(checkoutService.checkout(request));
+    }
+
+    @ExceptionHandler(PaymentException.class)
+    public ResponseEntity<ErrorDto> handlePaymentException() {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorDto("Error creating a checkout session"));
     }
 
     @ExceptionHandler({CartNotFoundException.class, CartEmptyException.class})
