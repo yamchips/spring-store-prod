@@ -4,21 +4,22 @@ import com.codewithmosh.store.dtos.CheckOutRequest;
 import com.codewithmosh.store.dtos.CheckOutResponse;
 import com.codewithmosh.store.entities.Cart;
 import com.codewithmosh.store.entities.Order;
+import com.codewithmosh.store.entities.PaymentStatus;
 import com.codewithmosh.store.exceptions.CartEmptyException;
 import com.codewithmosh.store.exceptions.CartNotFoundException;
 import com.codewithmosh.store.exceptions.PaymentException;
 import com.codewithmosh.store.repositories.CartRepository;
 import com.codewithmosh.store.repositories.OrderRepository;
-import com.stripe.exception.StripeException;
-import com.stripe.model.checkout.Session;
-import com.stripe.param.checkout.SessionCreateParams;
+import com.stripe.exception.SignatureVerificationException;
+import com.stripe.model.Event;
+import com.stripe.model.PaymentIntent;
+import com.stripe.model.StripeObject;
+import com.stripe.net.Webhook;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +52,15 @@ public class CheckoutService {
             throw e;
         }
 
+    }
+
+    public void handleWebhookRequest(WebhookRequest webhookRequest) {
+        paymentGateway
+                .parseWebhookRequest(webhookRequest)
+                .ifPresent(paymentResult -> {
+                    Order order = orderRepository.findById(paymentResult.getOrderId()).orElseThrow();
+                    order.setStatus(paymentResult.getPaymentStatus());
+                    orderRepository.save(order);
+                });
     }
 }
