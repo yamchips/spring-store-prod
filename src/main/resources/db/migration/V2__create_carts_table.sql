@@ -1,9 +1,9 @@
-CREATE TABLE store_api.carts (
+CREATE TABLE carts (
     id BINARY(16) DEFAULT (UUID_TO_BIN(UUID())) NOT NULL,
     date_created DATE NOT NULL,
     CONSTRAINT Cart_PK PRIMARY KEY (id)
 );
-CREATE TABLE store_api.cart_items (
+CREATE TABLE cart_items (
 	id BIGINT auto_increment NOT NULL,
 	cart_id BINARY(16) NOT NULL,
 	product_id BIGINT NOT NULL,
