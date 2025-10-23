@@ -23,7 +23,7 @@ public class Cart {
     private UUID id;
 
     @Column(name = "date_created", insertable = false, updatable = false)
-    private LocalDate dateCreated;
+    private LocalDate dateCreated = LocalDate.now();
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.MERGE, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<CartItem> items = new LinkedHashSet<>();
