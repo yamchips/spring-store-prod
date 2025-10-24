@@ -10,6 +10,6 @@ CREATE TABLE cart_items (
 	quantity INT DEFAULT 1 NOT NULL,
 	CONSTRAINT cart_items_pk PRIMARY KEY (id),
 	CONSTRAINT cart_items_cart_product_unique UNIQUE KEY (cart_id,product_id),
-	CONSTRAINT cart_items_carts_FK FOREIGN KEY (cart_id) REFERENCES store_api.carts(id) ON DELETE CASCADE,
-	CONSTRAINT cart_items_products_FK FOREIGN KEY (product_id) REFERENCES store_api.products(id) ON DELETE CASCADE
+	CONSTRAINT cart_items_carts_FK FOREIGN KEY (cart_id) REFERENCES carts(id) ON DELETE CASCADE,
+	CONSTRAINT cart_items_products_FK FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
