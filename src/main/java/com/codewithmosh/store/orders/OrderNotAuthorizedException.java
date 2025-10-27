@@ -1,4 +1,4 @@
-package com.codewithmosh.store.exceptions;
+package com.codewithmosh.store.orders;
 
 public class OrderNotAuthorizedException extends RuntimeException {
     public OrderNotAuthorizedException() {
