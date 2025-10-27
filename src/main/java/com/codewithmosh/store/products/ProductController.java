@@ -1,12 +1,5 @@
-package com.codewithmosh.store.controllers;
+package com.codewithmosh.store.products;
 
-import com.codewithmosh.store.dtos.ProductDto;
-import com.codewithmosh.store.entities.Category;
-import com.codewithmosh.store.entities.Product;
-import com.codewithmosh.store.mappers.ProductMapper;
-import com.codewithmosh.store.repositories.CategoryRepository;
-import com.codewithmosh.store.repositories.ProductRepository;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
