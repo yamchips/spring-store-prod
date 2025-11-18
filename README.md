@@ -5,6 +5,11 @@
 A fully featured e-commerce backend built with Spring Boot, Spring Security, and Stripe, implementing modern RESTful design principles, JWT authentication, validation, and payment workflows.
 Developed as part of Mosh Hamedani’s [“Spring Boot: Building APIs – Part 2” course](https://codewithmosh.com/p/spring-boot-building-apis), this project demonstrates production-grade backend architecture, clean code design, and cloud deployment.
 
+Improvements: 
+
+- Added `Dockerfile`, `docker-compose.yaml`, `application-docker.yaml` to enable running the app with Docker 
+- Published a multi-architecture Docker image (ARM64 and AMD64 version) to [docker hub](https://hub.docker.com/repository/docker/yamchips/store/general) for easy deployment 
+
 ## Features
 
 ### API design
