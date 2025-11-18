@@ -224,8 +224,8 @@ This backend listens for this event and updates the order status in the database
 ### 1. Clone and Setup
 
 ```
-git clone https://github.com/yamchips/online-store-backend
-cd online-store-backend
+git clone https://github.com/yamchips/spring-store-prod
+cd spring-store-prod
 ```
 
 ### 2. Configure Environment Variables
@@ -237,11 +237,27 @@ Create a `.env` file in the project root, set following variables:
 
 ### 3. Run App
 
+#### 3.1 Run Locally
+
 This is a Maven project. To start the application, run
 
 ```
 mvn spring-boot:run
 ```
+
+#### 3.2 Run with Docker Compose
+
+This project includes a `docker-compose.yaml` that starts:
+- MySQL database
+- Spring Boot application
+
+To start the application using Docker Compose, run
+
+```
+docker compose up --build
+```
+
+#### 3.3 Ports
 
 Once running, the application will be available at:
 
@@ -253,4 +269,12 @@ Swagger UI is available at:
 
 ```
 http://localhost:8080/swagger-ui.html
+```
+
+#### 3.4 Stop the Application
+
+To stop all running containers, run
+
+```
+docker compose down
 ```
