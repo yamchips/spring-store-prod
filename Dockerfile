@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Copy pom.xml first for dependency caching
 COPY pom.xml .
-RUN mvn -q -e -DskipTests dependency:resolve
+RUN mvn -q -e -DskipTests dependency:go-offline
 
 # Copy the rest of the source code
 COPY src ./src
