@@ -10,12 +10,16 @@ services:
       - .env
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME}?createDatabaseIfNotExist=true
+
 
   db:
     image: mysql:8.4
     environment:
-      MYSQL_ROOT_PASSWORD: 090624JC
-      MYSQL_DATABASE: store_api
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:

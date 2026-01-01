@@ -239,6 +239,9 @@ Create a `.env` file in the project root, set following variables:
 - JWT_SECRET
 - STRIPE_SECRET_KEY
 - STRIPE_WEBHOOK_SECRET_KEY
+- DB_NAME
+- DB_USER
+- DB_PASSWORD
 
 ### 3. Run App
 
