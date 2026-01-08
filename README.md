@@ -10,6 +10,14 @@ Improvements:
 - Added `Dockerfile`, `docker-compose.yaml`, `application-docker.yaml` to enable running the app with Docker 
 - Published a multi-architecture Docker image (ARM64 and AMD64 version) to [docker hub](https://hub.docker.com/repository/docker/yamchips/store/general) for easy deployment 
 
+## Database Design
+
+The following ER diagram presents the core domain model of the system, covering users, products, carts, orders, order items, and wishlists.
+It captures key relationships, cardinalities, and optional associations, including the use of join tables to model many-to-many interactions.
+The design reflects real-world e-commerce workflows while enforcing data integrity and supporting scalable query patterns.
+
+![ER Diagram](docs/online-store.png)
+
 ## Features
 
 ### API design
